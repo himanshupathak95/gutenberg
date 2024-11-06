@@ -11,19 +11,10 @@ import { store as blockEditorStore } from '@wordpress/block-editor';
  */
 import { unlock } from '../../lock-unlock';
 
-const isGutenbergPlugin = globalThis.IS_GUTENBERG_PLUGIN ? true : false;
-
 export function useShouldIframe() {
 	return useSelect( ( select ) => {
-		// In the Gutenberg plugin, which acts as a testing ground and is a
-		// bit more experimental than core, we always use the iframe.
-		if ( isGutenbergPlugin ) {
-			return true;
-		}
-
 		const { getEditorSettings, getCurrentPostType, getDeviceType } =
 			select( editorStore );
-
 		return (
 			// If the theme is block based, we ALWAYS use the iframe for
 			// consistency across the post and site editor. The iframe was
