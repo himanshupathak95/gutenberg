@@ -14,7 +14,6 @@
 -   `ToggleGroupControl`: Fix active background for `0` value ([#66855](https://github.com/WordPress/gutenberg/pull/66855)).
 -   `SlotFill`: Fix a bug where a stale value of `fillProps` could be used ([#67000](https://github.com/WordPress/gutenberg/pull/67000)).
 -   `ColorPicker`: Add accessible label for copy button ([#67094](https://github.com/WordPress/gutenberg/pull/67094)).
--   `MenuItemHelpText`: Fix text wrapping to prevent unintended word breaks by using `overflow-wrap: anywhere` ([#67011](https://github.com/WordPress/gutenberg/pull/67011)).
 
 ### Enhancements
 
@@ -27,6 +26,7 @@
 ### Internal
 
 -   `SlotFill`: fix dependencies of `Fill` registration effects ([#67071](https://github.com/WordPress/gutenberg/pull/67071)).
+-   `Menu.ItemHelpText`: Fix text wrapping to prevent unintended word breaks ([#67011](https://github.com/WordPress/gutenberg/pull/67011)).
 
 ## 28.12.0 (2024-11-16)
 
