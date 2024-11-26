@@ -42,9 +42,15 @@
 		text-align: center;
 	}
 
-	&.alignfull a,
-	&.alignwide a {
-		width: auto;
+	&.alignfull,
+	&.alignwide {
+		> a {
+			width: 100%;
+		}
+
+		figcaption a {
+			width: auto;
+		}
 	}
 
 	&.alignfull img,
