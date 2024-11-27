@@ -23,7 +23,7 @@ const DemoText = ( { decoration } ) => (
 );
 
 /**
- * Storybook configuration for TextDecorationControl component
+ * TextDecorationControl Properties
  */
 export default {
 	title: 'BlockEditor/TextDecorationControl',
