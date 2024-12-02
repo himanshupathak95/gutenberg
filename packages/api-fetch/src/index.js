@@ -170,6 +170,14 @@ function apiFetch( options ) {
 			return Promise.reject( error );
 		}
 
+		// Check if user is still logged in by checking for wordpress_logged_in cookie
+		const hasAuthCookie = document.cookie
+			.split( '; ' )
+			.some( ( cookie ) => cookie.startsWith( 'wordpress_logged_in_' ) );
+		if ( ! hasAuthCookie ) {
+			return Promise.reject( error );
+		}
+
 		// If the nonce is invalid, refresh it and try again.
 		return (
 			window
