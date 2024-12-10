@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useState, useEffect } from '@wordpress/element';
+import { useState } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -14,40 +14,33 @@ import TextAlignmentControl from '../';
 const ALIGNMENT_OPTIONS = [ 'left', 'center', 'right', 'justify' ];
 
 /**
- * Demo text component to show text alignment effect
- */
-const DemoText = ( { alignment } ) => (
-	<p style={ { textAlign: alignment } }>
-		This is a sample paragraph to demonstrate the text alignment control. It
-		contains multiple lines of text to better show the alignment effect. You
-		can see how the text aligns differently based on the selected option.
-	</p>
-);
-
-/**
  * TextAlignmentControl Properties
  */
-export default {
+const meta = {
 	title: 'BlockEditor/TextAlignmentControl',
 	component: TextAlignmentControl,
+	parameters: {
+		docs: {
+			canvas: { sourceState: 'shown' },
+			description: {
+				component: 'Control to facilitate text alignment selections.',
+			},
+		},
+	},
 	argTypes: {
 		value: {
-			control: 'select',
-			options: ALIGNMENT_OPTIONS,
-			description: 'Currently selected text alignment value',
+			control: { type: null },
+			description: 'Currently selected text alignment value.',
 			table: {
 				type: {
 					summary: 'string',
 				},
-				defaultValue: { summary: 'left' },
 			},
 		},
 		onChange: {
 			action: 'onChange',
-			control: {
-				type: null,
-			},
-			description: 'Callback function when text alignment changes',
+			control: { type: null },
+			description: 'Handles change in text alignment selection.',
 			table: {
 				type: {
 					summary: 'function',
@@ -55,50 +48,24 @@ export default {
 			},
 		},
 		options: {
-			control: 'array',
-			description: 'Array of alignment options to display',
+			control: 'check',
+			description: 'Array of text alignment options to display.',
+			options: ALIGNMENT_OPTIONS,
 			table: {
 				type: { summary: 'array' },
-				defaultValue: {
-					summary: "['left', 'center', 'right', 'justify']",
-				},
 			},
 		},
 		className: {
 			control: 'text',
-			description: 'Additional CSS class name to apply',
+			description: 'Class name to add to the control.',
 			table: {
 				type: { summary: 'string' },
 			},
 		},
 	},
-	render: function Render( { onChange, value, options, className } ) {
-		const [ selectedAlignment, setSelectedAlignment ] = useState( value );
-
-		useEffect( () => {
-			setSelectedAlignment( value );
-		}, [ value ] );
-
-		const handleAlignmentChange = ( newValue ) => {
-			setSelectedAlignment( newValue );
-			if ( onChange ) {
-				onChange( newValue );
-			}
-		};
-
-		return (
-			<div>
-				<TextAlignmentControl
-					value={ selectedAlignment }
-					onChange={ handleAlignmentChange }
-					options={ options }
-					className={ className }
-				/>
-				<DemoText alignment={ selectedAlignment } />
-			</div>
-		);
-	},
 };
+
+export default meta;
 
 /**
  * Default story showing TextAlignmentControl with left alignment
@@ -108,55 +75,17 @@ export const Default = {
 		value: 'left',
 		options: ALIGNMENT_OPTIONS,
 	},
-};
-
-/**
- * TextAlignmentControl with left alignment
- */
-export const WithLeftAlignment = {
-	args: {
-		value: 'left',
-		options: ALIGNMENT_OPTIONS,
-	},
-};
-
-/**
- * TextAlignmentControl with center alignment
- */
-export const WithCenterAlignment = {
-	args: {
-		value: 'center',
-		options: ALIGNMENT_OPTIONS,
-	},
-};
-
-/**
- * TextAlignmentControl with right alignment
- */
-export const WithRightAlignment = {
-	args: {
-		value: 'right',
-		options: ALIGNMENT_OPTIONS,
-	},
-};
-
-/**
- * TextAlignmentControl with justify alignment
- */
-export const WithJustifyAlignment = {
-	args: {
-		value: 'justify',
-		options: ALIGNMENT_OPTIONS,
-	},
-};
-
-/**
- * TextAlignmentControl with custom className
- */
-export const WithCustomClass = {
-	args: {
-		value: 'left',
-		options: ALIGNMENT_OPTIONS,
-		className: 'custom-text-alignment-control',
+	render: function Template( { onChange, ...args } ) {
+		const [ value, setValue ] = useState();
+		return (
+			<TextAlignmentControl
+				{ ...args }
+				onChange={ ( ...changeArgs ) => {
+					onChange( ...changeArgs );
+					setValue( ...changeArgs );
+				} }
+				value={ value }
+			/>
+		);
 	},
 };
