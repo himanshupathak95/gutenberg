@@ -1,38 +1,31 @@
 /**
+ * WordPress dependencies
+ */
+import { useState } from '@wordpress/element';
+
+/**
  * Internal dependencies
  */
 import TextDecorationControl from '../';
 
 /**
- * WordPress dependencies
- */
-import { useState, useEffect } from '@wordpress/element';
-
-/**
- * Text decoration options
- */
-const DECORATION_OPTIONS = [ 'none', 'underline', 'line-through' ];
-
-/**
- * Demo text component to show text decoration effect
- */
-const DemoText = ( { decoration } ) => (
-	<p style={ { textDecoration: decoration } }>
-		This is a sample text to demonstrate the text decoration.
-	</p>
-);
-
-/**
  * TextDecorationControl Properties
  */
-export default {
+const meta = {
 	title: 'BlockEditor/TextDecorationControl',
 	component: TextDecorationControl,
+	parameters: {
+		docs: {
+			canvas: { sourceState: 'shown' },
+			description: {
+				component: 'Control to facilitate text decoration selections.',
+			},
+		},
+	},
 	argTypes: {
 		value: {
-			control: 'select',
-			options: DECORATION_OPTIONS,
-			description: 'Currently selected text decoration value',
+			control: { type: null },
+			description: 'Currently selected text decoration.',
 			table: {
 				type: {
 					summary: 'string',
@@ -42,10 +35,8 @@ export default {
 		},
 		onChange: {
 			action: 'onChange',
-			control: {
-				type: null,
-			},
-			description: 'Callback function when text decoration changes',
+			control: { type: null },
+			description: 'Handles change in text decoration selection.',
 			table: {
 				type: {
 					summary: 'function',
@@ -54,72 +45,34 @@ export default {
 		},
 		className: {
 			control: 'text',
-			description: 'Additional CSS class name to apply',
+			description: 'Additional class name to apply.',
 			table: {
 				type: { summary: 'string' },
 			},
 		},
 	},
-	render: function Render( { onChange, value, className } ) {
-		const [ selectedDecoration, setSelectedDecoration ] = useState( value );
-
-		useEffect( () => {
-			setSelectedDecoration( value );
-		}, [ value ] );
-
-		const handleDecorationChange = ( newValue ) => {
-			setSelectedDecoration( newValue );
-			if ( onChange ) {
-				onChange( newValue );
-			}
-		};
-
-		return (
-			<div>
-				<TextDecorationControl
-					value={ selectedDecoration }
-					onChange={ handleDecorationChange }
-					className={ className }
-				/>
-				<DemoText decoration={ selectedDecoration } />
-			</div>
-		);
-	},
 };
 
+export default meta;
+
 /**
- * Story demonstrating TextDecorationControl with default settings
+ * Default story showing TextDecorationControl
  */
 export const Default = {
 	args: {
 		value: 'none',
 	},
-};
-
-/**
- * TextDecorationControl with underline decoration selected
- */
-export const WithUnderline = {
-	args: {
-		value: 'underline',
-	},
-};
-
-/**
- * TextDecorationControl with strikethrough decoration selected
- */
-export const WithStrikethrough = {
-	args: {
-		value: 'line-through',
-	},
-};
-
-/**
- * TextDecorationControl with custom className
- */
-export const WithCustomClass = {
-	args: {
-		value: 'none',
-		className: 'custom-text-decoration-control',
+	render: function Template( { onChange, ...args } ) {
+		const [ value, setValue ] = useState( 'none' );
+		return (
+			<TextDecorationControl
+				{ ...args }
+				onChange={ ( newValue ) => {
+					onChange( newValue );
+					setValue( newValue );
+				} }
+				value={ value }
+			/>
+		);
 	},
 };
