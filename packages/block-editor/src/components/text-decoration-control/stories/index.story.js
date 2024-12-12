@@ -8,9 +8,6 @@ import { useState } from '@wordpress/element';
  */
 import TextDecorationControl from '../';
 
-/**
- * TextDecorationControl Properties
- */
 const meta = {
 	title: 'BlockEditor/TextDecorationControl',
 	component: TextDecorationControl,
@@ -59,9 +56,6 @@ export default meta;
  * Default story showing TextDecorationControl
  */
 export const Default = {
-	args: {
-		value: 'none',
-	},
 	render: function Template( { onChange, ...args } ) {
 		const [ value, setValue ] = useState( 'none' );
 		return (
