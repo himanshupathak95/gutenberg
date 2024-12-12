@@ -8,14 +8,6 @@ import { useState } from '@wordpress/element';
  */
 import TextAlignmentControl from '../';
 
-/**
- * Text alignment options
- */
-const ALIGNMENT_OPTIONS = [ 'left', 'center', 'right', 'justify' ];
-
-/**
- * TextAlignmentControl Properties
- */
 const meta = {
 	title: 'BlockEditor/TextAlignmentControl',
 	component: TextAlignmentControl,
@@ -50,7 +42,7 @@ const meta = {
 		options: {
 			control: 'check',
 			description: 'Array of text alignment options to display.',
-			options: ALIGNMENT_OPTIONS,
+			options: [ 'left', 'center', 'right', 'justify' ],
 			table: {
 				type: { summary: 'array' },
 			},
@@ -71,10 +63,6 @@ export default meta;
  * Default story showing TextAlignmentControl with left alignment
  */
 export const Default = {
-	args: {
-		value: 'left',
-		options: ALIGNMENT_OPTIONS,
-	},
 	render: function Template( { onChange, ...args } ) {
 		const [ value, setValue ] = useState();
 		return (
