@@ -4,9 +4,10 @@
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	Disabled,
-	PanelBody,
 	RangeControl,
 	ToggleControl,
+	__experimentalToolsPanel as ToolsPanel,
+	__experimentalToolsPanelItem as ToolsPanelItem,
 } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
@@ -39,46 +40,98 @@ export default function LatestComments( { attributes, setAttributes } ) {
 	return (
 		<div { ...useBlockProps() }>
 			<InspectorControls>
-				<PanelBody title={ __( 'Settings' ) }>
-					<ToggleControl
-						__nextHasNoMarginBottom
+				<ToolsPanel
+					label={ __( 'Settings' ) }
+					resetAll={ () => {
+						setAttributes( {
+							commentsToShow: 5,
+							displayAvatar: true,
+							displayDate: true,
+							displayExcerpt: true,
+						} );
+					} }
+					className="latest-comments-tools-panel"
+				>
+					<ToolsPanelItem
+						hasValue={ () => displayAvatar !== true }
 						label={ __( 'Display avatar' ) }
-						checked={ displayAvatar }
-						onChange={ () =>
-							setAttributes( { displayAvatar: ! displayAvatar } )
+						onDeselect={ () =>
+							setAttributes( { displayAvatar: true } )
 						}
-					/>
-					<ToggleControl
-						__nextHasNoMarginBottom
+						isShownByDefault
+					>
+						<ToggleControl
+							__nextHasNoMarginBottom
+							label={ __( 'Display avatar' ) }
+							checked={ displayAvatar }
+							onChange={ () =>
+								setAttributes( {
+									displayAvatar: ! displayAvatar,
+								} )
+							}
+						/>
+					</ToolsPanelItem>
+
+					<ToolsPanelItem
+						hasValue={ () => displayDate !== true }
 						label={ __( 'Display date' ) }
-						checked={ displayDate }
-						onChange={ () =>
-							setAttributes( { displayDate: ! displayDate } )
+						onDeselect={ () =>
+							setAttributes( { displayDate: true } )
 						}
-					/>
-					<ToggleControl
-						__nextHasNoMarginBottom
+						isShownByDefault
+					>
+						<ToggleControl
+							__nextHasNoMarginBottom
+							label={ __( 'Display date' ) }
+							checked={ displayDate }
+							onChange={ () =>
+								setAttributes( { displayDate: ! displayDate } )
+							}
+						/>
+					</ToolsPanelItem>
+
+					<ToolsPanelItem
+						hasValue={ () => displayExcerpt !== true }
 						label={ __( 'Display excerpt' ) }
-						checked={ displayExcerpt }
-						onChange={ () =>
-							setAttributes( {
-								displayExcerpt: ! displayExcerpt,
-							} )
+						onDeselect={ () =>
+							setAttributes( { displayExcerpt: true } )
 						}
-					/>
-					<RangeControl
-						__nextHasNoMarginBottom
-						__next40pxDefaultSize
+						isShownByDefault
+					>
+						<ToggleControl
+							__nextHasNoMarginBottom
+							label={ __( 'Display excerpt' ) }
+							checked={ displayExcerpt }
+							onChange={ () =>
+								setAttributes( {
+									displayExcerpt: ! displayExcerpt,
+								} )
+							}
+						/>
+					</ToolsPanelItem>
+
+					<ToolsPanelItem
+						hasValue={ () => commentsToShow !== 5 }
 						label={ __( 'Number of comments' ) }
-						value={ commentsToShow }
-						onChange={ ( value ) =>
-							setAttributes( { commentsToShow: value } )
+						onDeselect={ () =>
+							setAttributes( { commentsToShow: 5 } )
 						}
-						min={ MIN_COMMENTS }
-						max={ MAX_COMMENTS }
-						required
-					/>
-				</PanelBody>
+						isShownByDefault
+					>
+						<RangeControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
+							label={ __( 'Number of comments' ) }
+							value={ commentsToShow }
+							onChange={ ( value ) =>
+								setAttributes( { commentsToShow: value } )
+							}
+							min={ MIN_COMMENTS }
+							max={ MAX_COMMENTS }
+							required
+						/>
+					</ToolsPanelItem>
+				</ToolsPanel>
 			</InspectorControls>
 			<Disabled>
 				<ServerSideRender
