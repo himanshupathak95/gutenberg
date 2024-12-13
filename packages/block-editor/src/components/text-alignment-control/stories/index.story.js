@@ -59,9 +59,6 @@ const meta = {
 
 export default meta;
 
-/**
- * Default story showing TextAlignmentControl with left alignment
- */
 export const Default = {
 	render: function Template( { onChange, ...args } ) {
 		const [ value, setValue ] = useState();
