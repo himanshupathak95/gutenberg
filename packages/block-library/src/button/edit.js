@@ -18,10 +18,11 @@ import { useEffect, useState, useRef, useMemo } from '@wordpress/element';
 import {
 	Button,
 	ButtonGroup,
-	PanelBody,
 	TextControl,
 	ToolbarButton,
 	Popover,
+	__experimentalToolsPanel as ToolsPanel,
+	__experimentalToolsPanelItem as ToolsPanelItem,
 } from '@wordpress/components';
 import {
 	AlignmentControl,
@@ -29,11 +30,11 @@ import {
 	InspectorControls,
 	RichText,
 	useBlockProps,
+	LinkControl,
 	__experimentalUseBorderProps as useBorderProps,
 	__experimentalUseColorProps as useColorProps,
 	__experimentalGetSpacingClassesAndStyles as useSpacingProps,
 	__experimentalGetShadowClassesAndStyles as useShadowProps,
-	__experimentalLinkControl as LinkControl,
 	__experimentalGetElementClassName,
 	store as blockEditorStore,
 	useBlockEditingMode,
@@ -123,26 +124,39 @@ function WidthPanel( { selectedWidth, setAttributes } ) {
 	}
 
 	return (
-		<PanelBody title={ __( 'Settings' ) }>
-			<ButtonGroup aria-label={ __( 'Button width' ) }>
-				{ [ 25, 50, 75, 100 ].map( ( widthValue ) => {
-					return (
-						<Button
-							key={ widthValue }
-							size="small"
-							variant={
-								widthValue === selectedWidth
-									? 'primary'
-									: undefined
-							}
-							onClick={ () => handleChange( widthValue ) }
-						>
-							{ widthValue }%
-						</Button>
-					);
-				} ) }
-			</ButtonGroup>
-		</PanelBody>
+		<ToolsPanel
+			label={ __( 'Settings' ) }
+			resetAll={ () => {
+				handleChange( undefined );
+			} }
+		>
+			<ToolsPanelItem
+				label={ __( 'Button width' ) }
+				__nextHasNoMarginBottom
+				isShownByDefault
+				hasValue={ () => !! selectedWidth }
+				onDeselect={ () => handleChange( undefined ) }
+			>
+				<ButtonGroup aria-label={ __( 'Button width' ) }>
+					{ [ 25, 50, 75, 100 ].map( ( widthValue ) => {
+						return (
+							<Button
+								key={ widthValue }
+								size="small"
+								variant={
+									widthValue === selectedWidth
+										? 'primary'
+										: undefined
+								}
+								onClick={ () => handleChange( widthValue ) }
+							>
+								{ widthValue }%
+							</Button>
+						);
+					} ) }
+				</ButtonGroup>
+			</ToolsPanelItem>
+		</ToolsPanel>
 	);
 }
 
