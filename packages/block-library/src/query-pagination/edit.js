@@ -20,6 +20,7 @@ import { useEffect } from '@wordpress/element';
  */
 import { QueryPaginationArrowControls } from './query-pagination-arrow-controls';
 import { QueryPaginationLabelControl } from './query-pagination-label-control';
+import { useToolsPanelDropdownMenuProps } from '../utils/hooks';
 
 const TEMPLATE = [
 	[ 'core/query-pagination-previous' ],
@@ -59,6 +60,7 @@ export default function QueryPaginationEdit( {
 			setAttributes( { showLabel: true } );
 		}
 	}, [ paginationArrow, setAttributes, showLabel ] );
+	const dropdownMenuProps = useToolsPanelDropdownMenuProps();
 	return (
 		<>
 			{ hasNextPreviousBlocks && (
@@ -71,6 +73,7 @@ export default function QueryPaginationEdit( {
 								showLabel: true,
 							} );
 						} }
+						dropdownMenuProps={ dropdownMenuProps }
 					>
 						<ToolsPanelItem
 							hasValue={ () => paginationArrow !== 'none' }
