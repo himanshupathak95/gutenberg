@@ -50,10 +50,9 @@ export default function LatestComments( { attributes, setAttributes } ) {
 							displayExcerpt: true,
 						} );
 					} }
-					className="latest-comments-tools-panel"
 				>
 					<ToolsPanelItem
-						hasValue={ () => displayAvatar !== true }
+						hasValue={ () => ! displayAvatar }
 						label={ __( 'Display avatar' ) }
 						onDeselect={ () =>
 							setAttributes( { displayAvatar: true } )
@@ -73,7 +72,7 @@ export default function LatestComments( { attributes, setAttributes } ) {
 					</ToolsPanelItem>
 
 					<ToolsPanelItem
-						hasValue={ () => displayDate !== true }
+						hasValue={ () => ! displayDate }
 						label={ __( 'Display date' ) }
 						onDeselect={ () =>
 							setAttributes( { displayDate: true } )
@@ -91,7 +90,7 @@ export default function LatestComments( { attributes, setAttributes } ) {
 					</ToolsPanelItem>
 
 					<ToolsPanelItem
-						hasValue={ () => displayExcerpt !== true }
+						hasValue={ () => ! displayExcerpt }
 						label={ __( 'Display excerpt' ) }
 						onDeselect={ () =>
 							setAttributes( { displayExcerpt: true } )
