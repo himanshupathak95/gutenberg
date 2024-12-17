@@ -250,7 +250,6 @@ export default function EditSiteEditor( { isPostsList = false } ) {
 	};
 
 	const { saveDirtyEntities } = unlock( useDispatch( editorStore ) );
-	const { setIsSaveViewOpened } = useDispatch( editSiteStore );
 	const { dirtyEntityRecords } = useEntitiesSavedStatesIsDirty();
 	const { registerShortcut } = useDispatch( keyboardShortcutsStore );
 
@@ -273,12 +272,9 @@ export default function EditSiteEditor( { isPostsList = false } ) {
 			return;
 		}
 
-		// If only one entity is dirty, save directly
-		if ( dirtyEntityRecords.length === 1 ) {
+		if ( canvas === 'edit' ) {
+			// Save dirty entities when the user presses the save shortcut.
 			saveDirtyEntities( { dirtyEntityRecords } );
-		} else {
-			// If multiple entities are dirty, open the save panel
-			setIsSaveViewOpened( true );
 		}
 	} );
 
