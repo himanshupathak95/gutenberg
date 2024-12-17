@@ -13,6 +13,11 @@ import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
 
 /**
+ * Internal dependencies
+ */
+import { useToolsPanelDropdownMenuProps } from '../utils/hooks';
+
+/**
  * Minimum number of comments a user can show using this block.
  *
  * @type {number}
@@ -37,6 +42,8 @@ export default function LatestComments( { attributes, setAttributes } ) {
 		},
 	};
 
+	const dropdownMenuProps = useToolsPanelDropdownMenuProps();
+
 	return (
 		<div { ...useBlockProps() }>
 			<InspectorControls>
@@ -50,6 +57,7 @@ export default function LatestComments( { attributes, setAttributes } ) {
 							displayExcerpt: true,
 						} );
 					} }
+					dropdownMenuProps={ dropdownMenuProps }
 				>
 					<ToolsPanelItem
 						hasValue={ () => ! displayAvatar }
