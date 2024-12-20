@@ -27,7 +27,6 @@ const meta = {
 				type: {
 					summary: 'string',
 				},
-				defaultValue: { summary: 'none' },
 			},
 		},
 		onChange: {
@@ -52,18 +51,15 @@ const meta = {
 
 export default meta;
 
-/**
- * Default story showing TextDecorationControl
- */
 export const Default = {
 	render: function Template( { onChange, ...args } ) {
-		const [ value, setValue ] = useState( 'none' );
+		const [ value, setValue ] = useState();
 		return (
 			<TextDecorationControl
 				{ ...args }
-				onChange={ ( newValue ) => {
-					onChange( newValue );
-					setValue( newValue );
+				onChange={ ( ...changeArgs ) => {
+					onChange( ...changeArgs );
+					setValue( ...changeArgs );
 				} }
 				value={ value }
 			/>
