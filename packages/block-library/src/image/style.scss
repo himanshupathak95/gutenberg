@@ -18,6 +18,7 @@
 
 			&.show {
 				animation: show-content-image 0.4s;
+				@include reduce-motion("animation");
 			}
 		}
 	}
@@ -282,6 +283,7 @@
 	&.active {
 		visibility: visible;
 		animation: both turn-on-visibility 0.25s;
+		@include reduce-motion("animation");
 		img {
 			animation: both turn-on-visibility 0.35s;
 		}
@@ -289,6 +291,7 @@
 	&.show-closing-animation {
 		&:not(.active) {
 			animation: both turn-off-visibility 0.35s;
+			@include reduce-motion("animation");
 			img {
 				animation: both turn-off-visibility 0.25s;
 			}
@@ -303,6 +306,7 @@
 				animation: none;
 				.lightbox-image-container {
 					animation: lightbox-zoom-in 0.4s;
+					@include reduce-motion("animation");
 					// Override fade animation for image
 					img {
 						animation: none;
@@ -310,6 +314,7 @@
 				}
 				.scrim {
 					animation: turn-on-visibility 0.4s forwards;
+					@include reduce-motion("animation");
 				}
 			}
 			&.show-closing-animation {
@@ -317,6 +322,7 @@
 					animation: none;
 					.lightbox-image-container {
 						animation: lightbox-zoom-out 0.4s;
+						@include reduce-motion("animation");
 						// Override fade animation for image
 						img {
 							animation: none;
@@ -324,6 +330,7 @@
 					}
 					.scrim {
 						animation: turn-off-visibility 0.4s forwards;
+						@include reduce-motion("animation");
 					}
 				}
 			}

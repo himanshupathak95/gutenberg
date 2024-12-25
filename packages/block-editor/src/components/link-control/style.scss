@@ -291,6 +291,7 @@ $block-editor-link-control-number-of-actions: 1;
 			border-radius: 100%;
 			animation: loadingpulse 1s linear infinite;
 			animation-delay: 0.5s; // avoid animating for fast network responses
+			@include reduce-motion("animation");
 		}
 	}
 }

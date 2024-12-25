@@ -13,6 +13,7 @@ $dot-scale: 3;  // How much the pulse animation should scale up by in size
 
 	&::before {
 		animation: nux-pulse 1.6s infinite cubic-bezier(0.17, 0.67, 0.92, 0.62);
+		@include reduce-motion("animation");
 		background: rgba(#00739c, 0.9);
 		opacity: 0.9;
 		height: $dot-size * $dot-scale;

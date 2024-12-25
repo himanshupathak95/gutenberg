@@ -50,6 +50,7 @@
 
 .components-animate__loading {
 	animation: components-animate__loading 1.6s ease-in-out infinite;
+	@include reduce-motion("animation");
 }
 
 @keyframes components-animate__loading {
