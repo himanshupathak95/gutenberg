@@ -27,6 +27,7 @@
 	right: 0;
 	top: 0;
 	transition: all 0.3s; // Match .block-editor-iframe__body transition.
+	@include reduce-motion("transition");
 }
 
 .edit-site-editor-canvas-container__close-button {

@@ -116,6 +116,7 @@
 		.edit-site-resizable-frame__inner-content {
 			box-shadow: $elevation-x-small;
 			transition: border-radius, box-shadow 0.4s;
+			@include reduce-motion("transition");
 			// This ensure the radius work properly.
 			overflow: hidden;
 

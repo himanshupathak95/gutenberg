@@ -168,6 +168,7 @@ $navigation-icon-size: 24px;
 		opacity: 0;
 		transition: opacity 0.1s linear;
 		visibility: hidden;
+		@include reduce-motion("transition");
 
 		// Don't take up space when the menu is collapsed.
 		width: 0;

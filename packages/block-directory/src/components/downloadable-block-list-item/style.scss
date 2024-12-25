@@ -16,6 +16,7 @@
 	border: 0;
 	text-align: left;
 	transition: box-shadow 0.1s linear;
+	@include reduce-motion("transition");
 
 	// The item contains absolutely positioned items.
 	// Set `position: relative` on the parent to prevent overflow issues

@@ -234,6 +234,7 @@
 		margin: 0;
 		text-decoration: none;
 		transition: box-shadow 0.1s linear;
+		@include reduce-motion("transition");
 
 		.components-modal__content & {
 			padding-left: 0;

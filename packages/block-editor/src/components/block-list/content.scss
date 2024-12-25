@@ -401,6 +401,7 @@ _::-webkit-full-page-media, _:future, :root [data-has-multi-selection="true"] .b
 	margin-left: -1px;
 	margin-right: -1px;
 	transition: background-color 0.3s ease;
+	@include reduce-motion("transition");
 	display: flex;
 	align-items: center;
 	justify-content: center;

@@ -130,6 +130,7 @@
 			height: 100%;
 			border-radius: $radius-small;
 			transition: all 0.05s ease-in-out;
+			@include reduce-motion("transition");
 			position: relative;
 			border: $border-width solid transparent;
 

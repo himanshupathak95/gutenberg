@@ -60,6 +60,7 @@
 	align-items: center;
 	background-color: transparent;
 	transition: all 0.1s linear 0.1s;
+	@include reduce-motion("transition");
 
 	.block-editor-block-draggable-chip__disabled-icon {
 		width: $grid-unit-50 * 0.5;
