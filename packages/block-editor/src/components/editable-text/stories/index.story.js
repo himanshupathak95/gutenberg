@@ -23,7 +23,7 @@ const meta = {
 	argTypes: {
 		value: {
 			control: { type: null },
-			description: 'Text content to make editable.',
+			description: 'String to make editable.',
 			table: {
 				type: { summary: 'string' },
 			},
@@ -31,7 +31,7 @@ const meta = {
 		onChange: {
 			action: 'onChange',
 			control: { type: null },
-			description: 'Called when the text content changes.',
+			description: 'Called when the value changes.',
 			table: {
 				type: { summary: 'function' },
 			},
@@ -53,9 +53,37 @@ const meta = {
 		},
 		disableLineBreaks: {
 			control: 'boolean',
-			description: 'Prevents insertion of line breaks on Enter.',
+			description:
+				"Text won't insert line breaks on Enter if set to true.",
 			table: {
 				type: { summary: 'boolean' },
+			},
+		},
+		onReplace: {
+			action: 'onReplace',
+			control: { type: null },
+			description:
+				'Called when the Text instance can be replaced with the given blocks.',
+			table: {
+				type: { summary: 'function' },
+			},
+		},
+		onMerge: {
+			action: 'onMerge',
+			control: { type: null },
+			description:
+				'Called when blocks can be merged. Forward is true when merging with the next block, false when merging with the previous block.',
+			table: {
+				type: { summary: 'function' },
+			},
+		},
+		onRemove: {
+			action: 'onRemove',
+			control: { type: null },
+			description:
+				'Called when the block can be removed. Forward is true when the selection is expected to move to the next block, false to the previous block.',
+			table: {
+				type: { summary: 'function' },
 			},
 		},
 	},
@@ -65,7 +93,7 @@ export default meta;
 
 export const Default = {
 	render: function Template( { onChange, ...args } ) {
-		const [ value, setValue ] = useState( '' );
+		const [ value, setValue ] = useState();
 		return (
 			<EditableText
 				{ ...args }
@@ -74,7 +102,7 @@ export const Default = {
 					onChange( ...changeArgs );
 					setValue( ...changeArgs );
 				} }
-				placeholder="Type some text..."
+				tagName={ args.tagName || 'div' }
 			/>
 		);
 	},
