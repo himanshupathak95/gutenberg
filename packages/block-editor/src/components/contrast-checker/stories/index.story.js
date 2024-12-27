@@ -101,6 +101,7 @@ const meta = {
 				type: {
 					summary: 'boolean',
 				},
+				defaultValue: { summary: false },
 			},
 		},
 	},
@@ -108,4 +109,9 @@ const meta = {
 
 export default meta;
 
-export const Default = {};
+export const Default = {
+	args: {
+		backgroundColor: '#ffffff',
+		textColor: '#ffffff',
+	},
+};
