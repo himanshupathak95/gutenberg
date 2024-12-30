@@ -40,6 +40,13 @@
 			"type": "boolean"
 		}
 	},
+	"example": {
+		"attributes": {
+			"label": "About",
+			"type": "page",
+			"title": "About Us"
+		}
+	},
 	"usesContext": [
 		"textColor",
 		"customTextColor",
