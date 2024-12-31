@@ -11,7 +11,7 @@
 		vertical-align: bottom;
 		box-sizing: border-box;
 
-		@media (prefers-reduced-motion: no-preference) {
+		@media not (prefers-reduced-motion) {
 			&.hide {
 				visibility: hidden;
 			}
@@ -167,7 +167,7 @@
 		text-align: center;
 		padding: 0;
 		border-radius: 4px;
-		@media (prefers-reduced-motion: no-preference) {
+		@media not (prefers-reduced-motion) {
 			transition: opacity 0.2s ease;
 		}
 
@@ -282,29 +282,29 @@
 	// or faster than the scrim to give a sense of depth.
 	&.active {
 		visibility: visible;
-		@media (prefers-reduced-motion: no-preference) {
+		@media not (prefers-reduced-motion) {
 			animation: both turn-on-visibility 0.25s;
 		}
 		img {
-			@media (prefers-reduced-motion: no-preference) {
+			@media not (prefers-reduced-motion) {
 				animation: both turn-on-visibility 0.35s;
 			}
 		}
 	}
 	&.show-closing-animation {
 		&:not(.active) {
-			@media (prefers-reduced-motion: no-preference) {
+			@media not (prefers-reduced-motion) {
 				animation: both turn-off-visibility 0.35s;
 			}
 			img {
-				@media (prefers-reduced-motion: no-preference) {
+				@media not (prefers-reduced-motion) {
 					animation: both turn-off-visibility 0.25s;
 				}
 			}
 		}
 	}
 
-	@media (prefers-reduced-motion: no-preference) {
+	@media not (prefers-reduced-motion) {
 		&.zoom {
 			&.active {
 				opacity: 1;
