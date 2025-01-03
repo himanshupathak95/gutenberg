@@ -26,7 +26,7 @@ const meta = {
 	argTypes: {
 		value: {
 			control: { type: null },
-			description: 'Currently selected vertical alignment value.',
+			description: 'The current value of the alignment setting.',
 			table: {
 				type: {
 					summary: 'string',
@@ -36,7 +36,8 @@ const meta = {
 		onChange: {
 			action: 'onChange',
 			control: { type: null },
-			description: 'Handles change in vertical alignment selection.',
+			description:
+				"A callback function invoked when the toolbar's alignment value is changed via an interaction with any of the toolbar's buttons",
 			table: {
 				type: {
 					summary: 'function',
@@ -63,9 +64,9 @@ export const Default = {
 		return (
 			<BlockVerticalAlignmentControl
 				{ ...args }
-				onChange={ ( newValue ) => {
-					onChange( newValue );
-					setValue( newValue );
+				onChange={ ( ...changeArgs ) => {
+					onChange( ...changeArgs );
+					setValue( ...changeArgs );
 				} }
 				value={ value }
 			/>
@@ -79,9 +80,9 @@ export const Toolbar = {
 		return (
 			<BlockVerticalAlignmentToolbar
 				{ ...args }
-				onChange={ ( newValue ) => {
-					onChange( newValue );
-					setValue( newValue );
+				onChange={ ( ...changeArgs ) => {
+					onChange( ...changeArgs );
+					setValue( ...changeArgs );
 				} }
 				value={ value }
 			/>
