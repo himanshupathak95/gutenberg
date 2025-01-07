@@ -25,13 +25,19 @@ A string that uniquely identifies the tip. Identifiers should be prefixed with t
 -   Type: `string`
 -   Required: Yes
 
-### position
+### placement
 
-The direction in which the popover should open relative to its parent node. Specify y- and x-axis as a space-separated string. Supports `"top"`, `"middle"`, `"bottom"` y axis, and `"left"`, `"center"`, `"right"` x axis.
+The placement of the popover relative to its parent node. Determines where the popover will be positioned relative to its reference element.
 
--   Type: `String`
--   Required: No
--   Default: `"middle right"`
+- Type: `string`
+- Required: No
+- Default: `"right"`
+- Possible values: 
+  - `'top'`, `'top-start'`, `'top-end'`
+  - `'right'`, `'right-start'`, `'right-end'`
+  - `'bottom'`, `'bottom-start'`, `'bottom-end'`
+  - `'left'`, `'left-start'`, `'left-end'`
+  - `'overlay'`
 
 ### children
 
