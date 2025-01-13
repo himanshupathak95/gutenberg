@@ -80,7 +80,7 @@
 	background-image: none !important;
 
 	// Draw a wavy underline.
-	.wp-block-navigation-link__placeholder-text span {
+	.wp-block-navigation-link__placeholder-text {
 		$blur: 10%;
 		$width: 6%;
 		$stop1: 30%;

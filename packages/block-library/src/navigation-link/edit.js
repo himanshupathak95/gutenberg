@@ -532,11 +532,12 @@ export default function NavigationLinkEdit( {
 				<a className={ classes }>
 					{ /* eslint-enable */ }
 					{ ! url ? (
-						<div className="wp-block-navigation-link__placeholder-text">
-							<Tooltip text={ tooltipText }>
-								<span>{ missingText }</span>
-							</Tooltip>
-						</div>
+						<span
+							className="wp-block-navigation-link__placeholder-text"
+							aria-label={ __( 'This item is missing a link' ) }
+						>
+							{ missingText }
+						</span>
 					) : (
 						<>
 							{ ! isInvalid &&
