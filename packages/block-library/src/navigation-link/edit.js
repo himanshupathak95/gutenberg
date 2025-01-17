@@ -17,7 +17,7 @@ import {
 	ToolbarGroup,
 } from '@wordpress/components';
 import { displayShortcut, isKeyboardEvent } from '@wordpress/keycodes';
-import { __, sprintf } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import {
 	BlockControls,
 	InspectorControls,
@@ -527,10 +527,7 @@ export default function NavigationLinkEdit( {
 				<a className={ classes }>
 					{ /* eslint-enable */ }
 					{ ! url ? (
-						<span
-							className="wp-block-navigation-link__placeholder-text"
-							aria-label={ __( 'This item is missing a link' ) }
-						>
+						<span className="wp-block-navigation-link__placeholder-text">
 							{ missingText }
 						</span>
 					) : (
@@ -584,15 +581,7 @@ export default function NavigationLinkEdit( {
 										}
 									) }
 								>
-									<span
-										aria-label={ sprintf(
-											/* translators: %s: link status (Invalid or Draft) */
-											__( 'Navigation link text - %s' ),
-											isInvalid
-												? __( 'Invalid' )
-												: __( 'Draft' )
-										) }
-									>
+									<span>
 										{
 											// Some attributes are stored in an escaped form. It's a legacy issue.
 											// Ideally they would be stored in a raw, unescaped form.
