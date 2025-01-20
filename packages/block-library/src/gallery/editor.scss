@@ -141,10 +141,6 @@
 	background: $white;
 	border: $border-width solid $gray-900;
 
-	@media not (prefers-reduced-motion) {
-		transition: box-shadow 0.2s ease-out;
-	}
-
 	&:hover {
 		box-shadow: $elevation-x-small;
 	}
