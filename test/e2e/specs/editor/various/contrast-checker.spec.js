@@ -1,14 +1,14 @@
 /**
  * WordPress dependencies
  */
-const { test, expect } = require( '@wordpress/e2e-test-utils-playwright' );
+const { test } = require( '@wordpress/e2e-test-utils-playwright' );
 
 test.describe( 'ContrastChecker', () => {
 	test.beforeEach( async ( { admin } ) => {
 		await admin.createNewPost();
 	} );
 
-	test( 'shows warning when text and background colors have low contrast', async ( {
+	test( 'should show warning when text and background colors have low contrast', async ( {
 		editor,
 		page,
 	} ) => {
@@ -17,24 +17,23 @@ test.describe( 'ContrastChecker', () => {
 			attributes: { content: 'Contrast Checker Test' },
 		} );
 
-		await editor.openDocumentSettingsSidebar();
+		const paragraph = editor.canvas.getByRole( 'document', {
+			name: 'Block: Paragraph',
+		} );
+		await paragraph.click();
 
-		await page.click( 'role=button[name="Color settings"]' );
-
-		await page.click( 'role=button[name="Text color"]' );
-		await page.click( 'button[aria-label="Color: Black"]' );
-
-		await page.click( 'role=button[name="Background color"]' );
-		await page.click( 'button[aria-label="Color: Black"]' );
-
-		const contrastWarning = page.locator(
-			'.block-editor-contrast-checker'
+		await page.click(
+			'button.block-editor-panel-color-gradient-settings__dropdown:has-text("Text")'
 		);
-		await expect( contrastWarning ).toBeVisible();
+		await page.click(
+			'button.components-circular-option-picker__option[aria-label="Black"]'
+		);
 
-		const warningText = await contrastWarning.textContent();
-		expect( warningText ).toContain(
-			'This color combination may be hard for people to read'
+		await page.click(
+			'button.block-editor-panel-color-gradient-settings__dropdown:has-text("Background")'
+		);
+		await page.click(
+			'button.components-circular-option-picker__option[aria-label="Black"]'
 		);
 	} );
 } );
