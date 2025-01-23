@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-const { test } = require( '@wordpress/e2e-test-utils-playwright' );
+const { test, expect } = require( '@wordpress/e2e-test-utils-playwright' );
 
 test.describe( 'ContrastChecker', () => {
 	test.beforeEach( async ( { admin } ) => {
@@ -34,6 +34,12 @@ test.describe( 'ContrastChecker', () => {
 		);
 		await page.click(
 			'button.components-circular-option-picker__option[aria-label="Black"]'
+		);
+
+		const warningElement = page.locator( '.block-editor-contrast-checker' );
+		await expect( warningElement ).toBeVisible();
+		await expect( warningElement ).toContainText(
+			'This color combination may be hard for people to read'
 		);
 	} );
 } );
