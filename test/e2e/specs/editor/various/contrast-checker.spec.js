@@ -22,19 +22,13 @@ test.describe( 'ContrastChecker', () => {
 		} );
 		await paragraph.click();
 
-		await page.click(
-			'button.block-editor-panel-color-gradient-settings__dropdown:has-text("Text")'
-		);
-		await page.click(
-			'button.components-circular-option-picker__option[aria-label="Black"]'
-		);
+		await page.click( '[data-wp-component="FlexItem"]:has-text("Text")' );
+		await page.click( 'button[aria-label="Black"]' );
 
 		await page.click(
-			'button.block-editor-panel-color-gradient-settings__dropdown:has-text("Background")'
+			'[data-wp-component="FlexItem"]:has-text("Background")'
 		);
-		await page.click(
-			'button.components-circular-option-picker__option[aria-label="Black"]'
-		);
+		await page.click( 'button[aria-label="Black"]' );
 
 		const warningElement = page.locator( '.block-editor-contrast-checker' );
 		await expect( warningElement ).toBeVisible();
