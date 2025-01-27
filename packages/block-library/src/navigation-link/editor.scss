@@ -63,12 +63,9 @@
 	}
 
 	.wp-block-navigation-link__placeholder-text {
-		&.is-invalid {
-			--wp-underline-color: var(--wp--preset--color--vivid-red);
-		}
-
+		&.is-invalid,
 		&.is-draft {
-			--wp-underline-color: var(--wp--preset--color--luminous-vivid-amber);
+			--wp-underline-color: var(--wp--preset--color--vivid-red);
 		}
 	}
 }
