@@ -48,4 +48,21 @@ test.describe( 'Spacer', () => {
 			)
 		).toBeFocused();
 	} );
+
+	test( 'should work in theme without spacing units support', async ( {
+		admin,
+		editor,
+		requestUtils,
+	} ) => {
+		await requestUtils.activateTheme( 'twentytwenty' );
+
+		await admin.createNewPost();
+		await editor.insertBlock( { name: 'core/spacer' } );
+
+		await expect(
+			editor.canvas.locator( '.block-editor-warning' )
+		).toHaveCount( 0 );
+
+		await requestUtils.activateTheme( 'twentytwentyone' );
+	} );
 } );
