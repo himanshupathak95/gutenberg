@@ -12,27 +12,23 @@ test.describe( 'ContrastChecker', () => {
 		editor,
 		page,
 	} ) => {
+		await editor.openDocumentSettingsSidebar();
 		await editor.insertBlock( {
 			name: 'core/paragraph',
 			attributes: { content: 'Contrast Checker Test' },
 		} );
 
-		const paragraph = editor.canvas.getByRole( 'document', {
-			name: 'Block: Paragraph',
-		} );
-		await paragraph.click();
+		await page.getByRole( 'button', { name: 'Text', exact: true } ).click();
+		await page.getByLabel( 'Black' ).click();
 
-		await page.click( '[data-wp-component="FlexItem"]:has-text("Text")' );
-		await page.click( 'button[aria-label="Black"]' );
+		await page.getByRole( 'button', { name: 'Background' } ).click();
+		await page.getByLabel( 'Black' ).click();
 
-		await page.click(
-			'[data-wp-component="FlexItem"]:has-text("Background")'
+		const lowContrastWarning = page.locator(
+			'.block-editor-contrast-checker'
 		);
-		await page.click( 'button[aria-label="Black"]' );
-
-		const warningElement = page.locator( '.block-editor-contrast-checker' );
-		await expect( warningElement ).toBeVisible();
-		await expect( warningElement ).toContainText(
+		await expect( lowContrastWarning ).toBeVisible();
+		await expect( lowContrastWarning ).toContainText(
 			'This color combination may be hard for people to read'
 		);
 	} );
