@@ -527,9 +527,9 @@ export default function NavigationLinkEdit( {
 				<a className={ classes }>
 					{ /* eslint-enable */ }
 					{ ! url ? (
-						<span className="wp-block-navigation-link__placeholder-text">
-							{ missingText }
-						</span>
+						<div className="wp-block-navigation-link__placeholder-text">
+							<span>{ missingText }</span>
+						</div>
 					) : (
 						<>
 							{ ! isInvalid &&
