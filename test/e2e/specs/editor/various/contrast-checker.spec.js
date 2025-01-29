@@ -19,10 +19,10 @@ test.describe( 'ContrastChecker', () => {
 		} );
 
 		await page.getByRole( 'button', { name: 'Text', exact: true } ).click();
-		await page.getByLabel( 'Black' ).click();
+		await page.getByRole( 'option', { name: 'Black' } ).click();
 
 		await page.getByRole( 'button', { name: 'Background' } ).click();
-		await page.getByLabel( 'Black' ).click();
+		await page.getByRole( 'option', { name: 'Black' } ).click();
 
 		const lowContrastWarning = page.locator(
 			'.block-editor-contrast-checker'
