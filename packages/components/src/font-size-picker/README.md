@@ -92,6 +92,8 @@ Size of the control.
 
 Available units for custom font size selection.
 
+**Important Note**: For the units property to work, font sizes must be specified as strings with units (e.g., `'12px'` instead of `12`). When font sizes are provided as numbers, the component operates in "unitless mode" where the units property has no effect.
+
 -   Required: No
 -   Default: `[ 'px', 'em', 'rem', 'vw', 'vh' ]`
 
