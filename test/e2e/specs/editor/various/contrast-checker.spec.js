@@ -16,6 +16,10 @@ test.describe( 'ContrastChecker', () => {
 	} ) => {
 		await editor.openDocumentSettingsSidebar();
 
+		const lowContrastWarning = page.locator(
+			'.block-editor-contrast-checker'
+		);
+
 		await test.step( 'Check black text on black background', async () => {
 			await editor.insertBlock( {
 				name: 'core/paragraph',
@@ -29,9 +33,6 @@ test.describe( 'ContrastChecker', () => {
 			await page.getByRole( 'button', { name: 'Background' } ).click();
 			await page.getByRole( 'option', { name: 'Black' } ).click();
 
-			const lowContrastWarning = page.locator(
-				'.block-editor-contrast-checker'
-			);
 			await expect( lowContrastWarning ).toBeVisible();
 			await expect( lowContrastWarning ).toContainText( WARNING_TEXT );
 		} );
@@ -47,11 +48,31 @@ test.describe( 'ContrastChecker', () => {
 				.click();
 			await page.getByRole( 'option', { name: 'White' } ).click();
 
-			const lowContrastWarning = page.locator(
-				'.block-editor-contrast-checker'
-			);
 			await expect( lowContrastWarning ).toBeVisible();
 			await expect( lowContrastWarning ).toContainText( WARNING_TEXT );
 		} );
+	} );
+
+	test( 'should not show warning for sufficient contrast', async ( {
+		editor,
+		page,
+	} ) => {
+		await editor.openDocumentSettingsSidebar();
+
+		const lowContrastWarning = page.locator(
+			'.block-editor-contrast-checker'
+		);
+
+		await editor.insertBlock( {
+			name: 'core/paragraph',
+			attributes: { content: 'Black text on White background' },
+		} );
+
+		await page.getByRole( 'button', { name: 'Text', exact: true } ).click();
+		await page.getByRole( 'option', { name: 'Black' } ).click();
+		await page.getByRole( 'button', { name: 'Background' } ).click();
+		await page.getByRole( 'option', { name: 'White' } ).click();
+
+		await expect( lowContrastWarning ).not.toBeVisible();
 	} );
 } );
