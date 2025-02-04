@@ -61,7 +61,7 @@ test.describe( 'Spacer', () => {
 
 		await expect(
 			editor.canvas.locator( '.block-editor-warning' )
-		).toHaveCount( 0 );
+		).not.toBeVisible();
 
 		await requestUtils.activateTheme( 'twentytwentyone' );
 	} );
