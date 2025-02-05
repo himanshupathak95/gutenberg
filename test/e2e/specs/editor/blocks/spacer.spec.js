@@ -50,7 +50,6 @@ test.describe( 'Spacer', () => {
 	} );
 
 	test( 'should work in theme without spacing units support', async ( {
-		admin,
 		editor,
 		page,
 	} ) => {
@@ -66,20 +65,10 @@ test.describe( 'Spacer', () => {
 			} );
 		} );
 
-		await admin.createNewPost();
 		await editor.insertBlock( { name: 'core/spacer' } );
 
 		await expect(
 			editor.canvas.locator( '.block-editor-warning' )
 		).toBeHidden();
-
-		await page.evaluate( () => {
-			if ( window.__originalSettings ) {
-				window.wp.data
-					.dispatch( 'core/block-editor' )
-					.updateSettings( window.__originalSettings );
-				delete window.__originalSettings;
-			}
-		} );
 	} );
 } );
