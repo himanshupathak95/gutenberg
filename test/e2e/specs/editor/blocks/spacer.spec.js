@@ -56,9 +56,12 @@ test.describe( 'Spacer', () => {
 	} ) => {
 		// Mock the theme.json data to simulate a theme without spacing units
 		await page.evaluate( () => {
-			window.__originalSettings = window.__experimentalGetSettings();
-			window.__experimentalGetSettings = () => ( {
-				...window.__originalSettings,
+			const settings = window.wp.data
+				.select( 'core/block-editor' )
+				.getSettings();
+			window.__originalSettings = settings;
+			window.wp.data.dispatch( 'core/block-editor' ).updateSettings( {
+				...settings,
 				spacing: { units: false },
 			} );
 		} );
@@ -68,12 +71,13 @@ test.describe( 'Spacer', () => {
 
 		await expect(
 			editor.canvas.locator( '.block-editor-warning' )
-		).not.toBeVisible();
+		).toBeHidden();
 
 		await page.evaluate( () => {
 			if ( window.__originalSettings ) {
-				window.__experimentalGetSettings = () =>
-					window.__originalSettings;
+				window.wp.data
+					.dispatch( 'core/block-editor' )
+					.updateSettings( window.__originalSettings );
 				delete window.__originalSettings;
 			}
 		} );
