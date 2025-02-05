@@ -52,9 +52,16 @@ test.describe( 'Spacer', () => {
 	test( 'should work in theme without spacing units support', async ( {
 		admin,
 		editor,
-		requestUtils,
+		page,
 	} ) => {
-		await requestUtils.activateTheme( 'twentytwenty' );
+		// Mock the theme.json data to simulate a theme without spacing units
+		await page.evaluate( () => {
+			window.__originalSettings = window.__experimentalGetSettings();
+			window.__experimentalGetSettings = () => ( {
+				...window.__originalSettings,
+				spacing: { units: false },
+			} );
+		} );
 
 		await admin.createNewPost();
 		await editor.insertBlock( { name: 'core/spacer' } );
@@ -63,6 +70,12 @@ test.describe( 'Spacer', () => {
 			editor.canvas.locator( '.block-editor-warning' )
 		).not.toBeVisible();
 
-		await requestUtils.activateTheme( 'twentytwentyone' );
+		await page.evaluate( () => {
+			if ( window.__originalSettings ) {
+				window.__experimentalGetSettings = () =>
+					window.__originalSettings;
+				delete window.__originalSettings;
+			}
+		} );
 	} );
 } );
