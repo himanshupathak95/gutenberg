@@ -53,6 +53,8 @@ test.describe( 'Spacer', () => {
 		editor,
 		page,
 	} ) => {
+		await page.waitForFunction( () => window?.wp?.data );
+
 		// Mock the theme.json data to simulate a theme without spacing units
 		await page.evaluate( () => {
 			const settings = window.wp.data
