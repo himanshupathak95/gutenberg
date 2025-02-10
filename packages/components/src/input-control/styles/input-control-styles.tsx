@@ -162,18 +162,13 @@ export const fontSizeStyles = ( { inputSize: size }: InputProps ) => {
 	};
 
 	const fontSize = sizes[ size as Size ] || sizes.default;
-	const fontSizeMobile = '16px';
 
 	if ( ! fontSize ) {
 		return '';
 	}
 
 	return css`
-		font-size: ${ fontSizeMobile };
-
-		@media ( min-width: 600px ) {
-			font-size: ${ fontSize };
-		}
+		font-size: ${ fontSize };
 	`;
 };
 
