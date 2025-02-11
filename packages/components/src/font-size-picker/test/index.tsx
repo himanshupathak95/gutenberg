@@ -230,7 +230,7 @@ describe( 'FontSizePicker', () => {
 				screen.getByRole( 'combobox', { name: 'Font size' } )
 			);
 			const options = screen.getAllByRole( 'option' );
-			expect( options ).toHaveLength( 8 );
+			expect( options ).toHaveLength( 7 );
 			expect( options[ 0 ] ).toHaveAccessibleName( 'Default' );
 			expect( options[ 1 ] ).toHaveAccessibleName( 'Tiny 8px' );
 			expect( options[ 2 ] ).toHaveAccessibleName( 'Small 1em' );
@@ -238,7 +238,6 @@ describe( 'FontSizePicker', () => {
 			expect( options[ 4 ] ).toHaveAccessibleName( 'Large' );
 			expect( options[ 5 ] ).toHaveAccessibleName( 'Extra Large 30px' );
 			expect( options[ 6 ] ).toHaveAccessibleName( 'xx-large 40px' );
-			expect( options[ 7 ] ).toHaveAccessibleName( 'Custom' );
 		} );
 
 		test.each( [
