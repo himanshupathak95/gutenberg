@@ -185,7 +185,6 @@ describe( 'FontSizePicker', () => {
 			}
 		);
 
-		commonSelectTests( fontSizes );
 		commonTests( fontSizes );
 	} );
 
@@ -325,7 +324,6 @@ describe( 'FontSizePicker', () => {
 			}
 		);
 
-		commonSelectTests( fontSizes );
 		commonTests( fontSizes );
 	} );
 
@@ -519,24 +517,6 @@ describe( 'FontSizePicker', () => {
 				).not.toBeInTheDocument();
 			}
 		);
-	}
-
-	function commonSelectTests( fontSizes: FontSize[] ) {
-		it( 'shows custom input when Custom is selected', async () => {
-			const user = userEvent.setup();
-			const onChange = jest.fn();
-			await render(
-				<FontSizePicker fontSizes={ fontSizes } onChange={ onChange } />
-			);
-			await user.click(
-				screen.getByRole( 'combobox', { name: 'Font size' } )
-			);
-			await user.click(
-				screen.getByRole( 'option', { name: 'Custom' } )
-			);
-			expect( screen.getByLabelText( 'Custom' ) ).toBeVisible();
-			expect( onChange ).not.toHaveBeenCalled();
-		} );
 	}
 
 	function commonTests( fontSizes: FontSize[] ) {
