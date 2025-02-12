@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Bug Fixes
+-   `FontSizePicker`: Remove Custom option from dropdown to prevent unexpected context changes during keyboard navigation ([#69038](https://github.com/WordPress/gutenberg/pull/69038)).
+
 ## 29.3.0 (2025-01-29)
 
 ### Enhancements
