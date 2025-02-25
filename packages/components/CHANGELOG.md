@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+-   `TextareaControl`: Fix Firefox placeholder text opacity override ([#69312](https://github.com/WordPress/gutenberg/pull/69312)).
+
 ### Bug Fixes
 
 -   `TextControl`: Ensures email and url inputs have consistent LTR alignment in RTL languages ([#68561](https://github.com/WordPress/gutenberg/pull/68561)).
