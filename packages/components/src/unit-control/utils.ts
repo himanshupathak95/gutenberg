@@ -394,7 +394,7 @@ export function filterUnitsWithSettings(
 	// Although the `isArray` check shouldn't be necessary (given the signature of
 	// this typed function), it's better to stay on the side of caution, since
 	// this function may be called from un-typed environments.
-	return Array.isArray( availableUnits ) && Array.isArray( allowedUnitValues )
+	return Array.isArray( availableUnits )
 		? availableUnits.filter( ( unit ) =>
 				allowedUnitValues.includes( unit.value )
 		  )
