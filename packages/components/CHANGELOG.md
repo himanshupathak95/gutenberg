@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+### Documentation
+
 -   `FontSizePicker`: Fix Storybook units control type to use `inline-check` and improve documentation clarifying unitless mode in `README.md` ([#68936](https://github.com/WordPress/gutenberg/pull/68936)).
 
 ### Bug Fixes
