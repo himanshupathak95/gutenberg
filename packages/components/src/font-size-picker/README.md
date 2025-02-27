@@ -92,14 +92,14 @@ Size of the control.
 
 Available units for custom font size selection.
 
-**Note**: For the `units` property to work, the current font size value must be specified as strings with units (e.g., `'12px'` instead of `12`). When the font size is provided as a number, the component operates in "unitless mode" where the `units` property has no effect.
-
 -   Required: No
 -   Default: `[ 'px', 'em', 'rem', 'vw', 'vh' ]`
 
 ### `value`: `number | string`
 
 The current font size value.
+
+**Note**: For the `units` property to work, the current font size value must be specified as strings with units (e.g., `'12px'` instead of `12`). When the font size is provided as a number, the component operates in "unitless mode" where the `units` property has no effect.
 
 -   Required: No
 
